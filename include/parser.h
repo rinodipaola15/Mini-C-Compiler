@@ -9,7 +9,7 @@
  */
 typedef enum {
     AST_NUMBER,   // numeric literal
-    AST_BINOP,    // binary operation (+, -, *, /)
+    AST_BINARY_OP,    // binary operation (+, -, *, /)
     AST_VAR,      // variable usage
     AST_ASSIGN,   // variable assignment
     AST_PRINT     // print statement
@@ -32,7 +32,7 @@ typedef struct ASTNode {
 /*
  *   Takes a list of tokens (produced by the lexer) and builds an Abstract Syntax Tree (AST).
  *   The AST represents the hierarchical structure of the program and the order of operations.
- *   Example: "5 + 3" becomes a node of type AST_BINOP with two children nodes (5 and 3).
+ *   Example: "5 + 3" becomes a node of type AST_BINARY_OP with two children nodes (5 and 3).
  */
 ASTNode* parse(TokenList* tokens);
 
@@ -43,7 +43,7 @@ ASTNode* parse(TokenList* tokens);
  *   Example output with indent levels:
  *     ASSIGN
  *       VAR x
- *       BINOP +
+ *       BINARY_OP +
  *         NUMBER 5
  *         NUMBER 3
  */
