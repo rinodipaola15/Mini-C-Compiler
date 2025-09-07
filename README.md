@@ -8,6 +8,21 @@ This repository is designed so that each part is **understandable and modular**,
 
 ---
 
+## Project Status
+
+⚠️ **Work in Progress (WIP)**
+
+This project is **currently under development**. Features are incomplete, and the compiler is evolving.  
+Some parts (like the interpreter, semantic analysis, and optional extensions) are still being implemented.
+
+- The lexer and parser are functional for simple expressions and variable assignments.
+- More complex statements, loops, and error handling are **not yet supported**.
+- Expect **frequent updates** and possible **breaking changes**.
+
+![status](https://img.shields.io/badge/status-in%20progress-yellow)
+
+---
+
 ## Tools and Language
 
 The project is written entirely in **C**, chosen for its clarity and direct mapping to low-level programming concepts.  
