@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "lexer.h"
-#include "parser.h"
+#include "../include/lexer.h"
+#include "../include/parser.h"
 
 /*
  * Main entry point of the Mini C Compiler.
@@ -12,7 +12,8 @@
 
 int main() {
     // Sample source code to process
-    const char* source_code = "let x = 5 + 3; print(x);";
+    //const char* source_code = "let x = 5 + 3; print(x);";
+    const char* source_code = "let x = 5 + 3;";
 
     printf("Source code:\n%s\n\n", source_code);
 

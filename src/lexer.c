@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-#include "lexer.h"
+#include "../include/lexer.h"
 
 /*
  * Simple lexer for the Mini C Compiler
