@@ -16,6 +16,8 @@ typedef enum {
     T_EQUAL,       // '='
     T_PRINT,       // 'print' keyword
     T_SEMICOLON,   // ';'
+    T_LPAREN,   // '('
+    T_RPAREN,   // ')'
     T_EOF          // end of file/input
 } TokenType;
 

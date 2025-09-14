@@ -90,6 +90,15 @@ ASTNode* parse_statement(TokenList* tokens, int* pos) {
          */
         return create_node(AST_PRINT, 0, NULL, expr, NULL);
 
+    } else if (current.type == T_LPAREN) { // if statement starts with '(' -> e.g. print(x);
+        (*pos)++; // skip '('
+        ASTNode* expr = parse_expression(tokens, pos);
+        if (tokens->tokens[*pos].type != T_RPAREN) {
+            printf("Syntax error: expected ')' at pos=%d\n", *pos);
+            exit(1);
+        }
+        (*pos)++; // skip ')'
+        return expr;
     } else { // handles standalone expressions that are not 'let' or 'print' statements (for example: "5 + 3;" or "x;")
         /* 
          * The parser creates an AST node representing the expression itself.
@@ -115,14 +124,33 @@ ASTNode* parse_expression(TokenList* tokens, int* pos) {
     } else if (current.type == T_IDENTIFIER) { // if token is a variable (e.g. 'x' in "x * 2") (it means that the expression contains a variable instead of a number)
         left = create_node(AST_VAR, 0, current.name, NULL, NULL);
         (*pos)++;
+    } else if (current.type == T_LPAREN) {  // if token is '('
+        (*pos)++; // skip the '(' token and move to the next one
+
+        // Recursively parse the expression inside the parentheses.
+        // This handles any valid sub-expression, including numbers, variables,
+        // binary operations, or even nested parentheses.
+        // The result is stored in 'left' as a subtree of the AST.
+        left = parse_expression(tokens, pos);
+
+        // After parsing the sub-expression, we expect a closing parenthesis ')'
+        // If the next token is not ')', it's a syntax error
+        if (tokens->tokens[*pos].type != T_RPAREN) {
+            printf("Syntax error: expected ')' at pos=%d\n", *pos);
+            exit(1);
+        }
+
+        (*pos)++;  // Skip the ')' token and continue parsing
     } else {
         printf("Syntax error: unexpected token at pos=%d\n", *pos);
         exit(1);
     }
 
-    current = tokens->tokens[*pos]; // lookahead to check for binary operator (e.g. '+' in "5 + 3")
-    if (current.type == T_PLUS || current.type == T_MINUS || current.type == T_MULT || current.type == T_DIV) {
-        char op = 0; // will hold the operator character ('+', '-', '*', '/')
+    current = tokens->tokens[*pos];
+    while (current.type == T_PLUS || current.type == T_MINUS ||
+        current.type == T_MULT || current.type == T_DIV) {
+
+        char op = 0;
         switch (current.type) {
             case T_PLUS: op = '+'; break;
             case T_MINUS: op = '-'; break;
@@ -130,11 +158,9 @@ ASTNode* parse_expression(TokenList* tokens, int* pos) {
             case T_DIV: op = '/'; break;
         }
         (*pos)++;
-        // recursively parse the right-hand side of the binary operation
         ASTNode* right = parse_expression(tokens, pos);
-        // Example: for "5 + 3", left = AST_NUMBER(5), right = AST_NUMBER(3),
-        // this creates AST_BINARY_OP(+) node with left and right as children
-        return create_node(AST_BINARY_OP, op, NULL, left, right);
+        left = create_node(AST_BINARY_OP, op, NULL, left, right);
+        current = tokens->tokens[*pos];
     }
 
     /* If no binary operator follows the current token, simply return the left node

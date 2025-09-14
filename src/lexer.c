@@ -108,6 +108,8 @@ TokenList lex(const char* source) {
             case '/': list.tokens[list.count++] = create_token(T_DIV, 0, NULL); break;
             case '=': list.tokens[list.count++] = create_token(T_EQUAL, 0, NULL); break;
             case ';': list.tokens[list.count++] = create_token(T_SEMICOLON, 0, NULL); break;
+            case '(': list.tokens[list.count++] = create_token(T_LPAREN, 0, NULL); break;
+            case ')': list.tokens[list.count++] = create_token(T_RPAREN, 0, NULL); break;
             default:
                 printf("Unknown character: %c\n", c);
                 exit(1);
