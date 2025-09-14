@@ -98,6 +98,7 @@ gcc src/main.c src/lexer.c src/parser.c src/interpreter.c src/utils.c -Iinclude 
 ```
 - Replace examples/test.txt with the path to your own source code file.
 - The program will read the file, tokenize, parse, and interpret it.
+
 Example code supported currently **(examples/test.txt)**:
 ```c
 let x = 5 + 3;
