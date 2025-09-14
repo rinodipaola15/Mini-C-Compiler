@@ -85,17 +85,21 @@ To compile and run the project, you need:
 
 ## How to Build and Run
 
+The compiler reads **source code from a file**, which must be specified as a **command-line argument** when executing the program.  
+
 1. Open a terminal in the project directory.  
 2. Compile the source files:
 ```bash
-gcc main.c lexer.c parser.c interpreter.c -I../include -o mini-c.exe
+gcc src/main.c src/lexer.c src/parser.c src/interpreter.c src/utils.c -Iinclude -o mini-c.exe
 ```
-3. Run the compiler/interpreter:
+3. Run the compiler/interpreter with a source file:
 ```bash
-./mini-c.exe
+./mini-c.exe examples/test.txt
 ```
+- Replace examples/test.txt with the path to your own source code file.
+- The program will read the file, tokenize, parse, and interpret it.
 4. Input code directly (or modify main.c to read a source file) to see results.
-Example code supported currently:
+Example code supported currently **(examples/test.txt)**:
 ```c
 let x = 5 + 3;
 let y = 1 + 1;
@@ -105,6 +109,8 @@ Output:
 ```plaintext
 10
 ```
+> ⚠️ Note: The function that reads the source file is implemented in `src/utils.c`.
+![triangle](https://upload.wikimedia.org/wikipedia/commons/4/4f/Triangle_equilateral.svg)
 
 ---
 

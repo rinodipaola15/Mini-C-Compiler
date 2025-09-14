@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "../include/lexer.h"
 #include "../include/parser.h"
 #include "../include/interpreter.h"
+#include "../include/utils.h"
 
 /*
  * Main entry point of the Mini C Compiler.
@@ -11,10 +13,16 @@
  * 3. Interpretation (execute the AST) - to be implemented later
  */
 
-int main() {
-    // Sample source code to process
-    const char* source_code = "let x = 5 + 3; let y = 1 + 1; print(x + y);";
+int main(int argc, char* argv[]) {
+    if (argc < 2) {
+        fprintf(stderr, "Error: No source file specified.\n");
+        fprintf(stderr, "Please provide the path to the source code file when running the program.\n");
+        fprintf(stderr, "Example usage: %s examples/test.txt\n", argv[0]);
+        return EXIT_FAILURE;
+    }
 
+    // Step 0: Read source code from the provided file
+    char* source_code = read_file(argv[1]);
     printf("Source code:\n%s\n\n", source_code);
 
     // Step 1: Lexer - convert text into a list of tokens
@@ -31,5 +39,6 @@ int main() {
     printf("\nProgram output:\n");
     interpret(ast);
 
+    free(source_code);
     return 0;
 }
