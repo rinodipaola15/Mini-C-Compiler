@@ -94,18 +94,13 @@ gcc main.c lexer.c parser.c interpreter.c -I../include -o mini-c.exe
 ```bash
 ./mini-c.exe
 ```
-Input code directly (or modify main.c to read a source file) to see results.
+4. Input code directly (or modify main.c to read a source file) to see results.
 Example code supported currently:
-
----
-
-## How to Test Other Expressions
-
-If you want to try different expressions or statements:
-1. Open main.c.
-2. Modify the string containing the source code you want to parse and execute.
-3. Recompile the project using your C compiler.
-4. Run the compiled program.
+```c
+let x = 5 + 3;
+let y = 1 + 1;
+print(x + y);
+```
 
 ---
 
