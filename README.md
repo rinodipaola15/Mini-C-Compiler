@@ -101,6 +101,10 @@ let x = 5 + 3;
 let y = 1 + 1;
 print(x + y);
 ```
+Output:
+```plaintext
+10
+```
 
 ---
 
