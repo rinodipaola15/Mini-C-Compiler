@@ -70,3 +70,48 @@ This project is perfect for developers who want to:
 - Gain experience in **low-level programming** while still producing working, visible results.  
 
 Even if your background is in web development, Python, or app programming, completing this project will give you insights into **how your code is transformed into machine-readable instructions**.
+
+---
+
+## Requirements
+
+To compile and run the project, you need:
+
+- A **C compiler** (GCC, Clang, or compatible).  
+- A terminal or command prompt to execute compiled binaries.  
+- No additional libraries are required.
+
+---
+
+## How to Build and Run
+
+1. Open a terminal in the project directory.  
+2. Compile the source files:
+```bash
+gcc main.c lexer.c parser.c interpreter.c -I../include -o mini-c.exe
+```
+3. Run the compiler/interpreter:
+```bash
+./mini-c.exe
+```
+Input code directly (or modify main.c to read a source file) to see results.
+Example code supported currently:
+
+---
+
+## How to Test Other Expressions
+
+If you want to try different expressions or statements:
+1. Open main.c.
+2. Modify the string containing the source code you want to parse and execute.
+3. Recompile the project using your C compiler.
+4. Run the compiled program.
+
+---
+
+## Notes
+
+- Only simple expressions and variable assignments are supported.  
+- Statements must end with a semicolon `;`.  
+- Parentheses `(` and `)` can be used for grouping expressions.  
+- Accessing undefined variables or dividing by zero will terminate execution with an error message.
