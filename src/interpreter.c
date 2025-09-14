@@ -109,9 +109,7 @@ void exec_statement(ASTNode* node, SymbolTable* table) {
             // Evaluate the expression on the left-hand side of the assignment node.
             // For example, in "let x = 5 + 3;", node->left represents "5 + 3".
             int value = eval_expression(node->left, table);
-            // Store the computed value in the symbol table using the variable name.
-            // 'node->name' contains the variable being assigned (e.g., "x").
-            int value = eval_expression(node->left, table);
+            // Store the computed value in the symbol table.
             set_symbol(table, node->name, value);
             break;
         }

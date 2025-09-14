@@ -13,8 +13,7 @@
 
 int main() {
     // Sample source code to process
-    const char* source_code = "let x = 5 + 3; print(x);";
-    //const char* source_code = "let x = 5 + 3;";
+    const char* source_code = "let x = 5 + 3; let y = 1 + 1; print(x + y);";
 
     printf("Source code:\n%s\n\n", source_code);
 
