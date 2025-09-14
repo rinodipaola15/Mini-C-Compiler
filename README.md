@@ -110,7 +110,6 @@ Output:
 10
 ```
 > ⚠️ Note: The function that reads the source file is implemented in `src/utils.c`.
-![triangle](https://upload.wikimedia.org/wikipedia/commons/4/4f/Triangle_equilateral.svg)
 
 ---
 
